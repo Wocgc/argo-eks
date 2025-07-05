@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-cgc
+  labels:
+    app: app-cgc
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: app-cgc
+  template:
+    metadata:
+      labels:
+        app: app-cgc
+    spec:
+      containers:
+        - name: app
+          image: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc:wocgc-app
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/config/data-access.properties
+              subPath: data-access.properties
+            - name: secret-volume
+              mountPath: /app/config/secret.properties
+              subPath: secret.properties
+      volumes:
+        - name: config-volume
+          configMap:
+            name: db-config
+            items:
+              - key: data-access.properties
+                path: data-access.properties
+        - name: secret-volume
+          secret:
+            secretName: db-secret
+            items:
+              - key: secret.properties
+                path: secret.properties
+
