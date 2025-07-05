@@ -1,0 +1,4 @@
+resources:
+  - deployment-web.yaml
+  - service-web.yaml
+
