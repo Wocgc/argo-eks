@@ -2,6 +2,6 @@ resources:
   - deployment-web.yaml
   - service-web.yaml
 images:
-  - name: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc-web
-    newName: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc-web
-    newTag: latest
+  - name: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc
+    newName: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc
+    newTag: wocgc-web
