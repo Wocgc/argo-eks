@@ -9,7 +9,7 @@ spec:
     repoURL: https://github.com/Wocgc/argo-eks.git
     targetRevision: HEAD
     path: .
-    directory:
+    kustomize: {}
       recurse: true
   destination:
     server: https://kubernetes.default.svc
