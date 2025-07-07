@@ -47,11 +47,12 @@ jobs:
           kustomize edit set image $ECR_REGISTRY/$WEB_IMAGE=$ECR_REGISTRY/$WEB_IMAGE:$WEB_TAG
           cd ..
 
-      - name: Commit & Push Image Tag (Web)
+                            
+      - name: Commit & Push Image Tag (App)
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add web/kustomization.yaml
-          git commit -m "ci: update web image tag to $WEB_TAG"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git add app/kustomization.yaml
+          git commit -m "ci: update app image tag to $APP_TAG"
           git push origin main
-
