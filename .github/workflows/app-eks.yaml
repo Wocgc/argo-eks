@@ -10,7 +10,7 @@ env:
   AWS_REGION: ap-northeast-2
   ECR_REGISTRY: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com
   ECR_REPOSITORY: wocgc
-  APP_IMAGE: wocgc-app
+  APP_IMAGE: wocgc
 
 jobs:
   build-and-deploy:
