@@ -13,3 +13,6 @@ cgc-eks-argocd/dd
 
 iam-policy.json
 iam-policy.json
+
+*.jar
+*.war
