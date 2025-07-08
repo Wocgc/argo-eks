@@ -54,7 +54,7 @@ jobs:
           git config user.email github-actions@github.com
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           # push 전에 항상 명시적으로 rebase 하기
-          git pull --rebase origin main
           git add web/kustomization.yaml
+          git pull -rebase origin main
           git commit -m "ci: update app image tag to $APP_TAG"
           git push origin main
