@@ -1,0 +1,4 @@
+resources:
+  - app-app.yaml
+  - web-app.yaml
+  - ingress-app.yaml
