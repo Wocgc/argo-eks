@@ -4,6 +4,6 @@ resources:
 images:
 - name: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc
   newName: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc
-  newTag: c8f5658-web
+  newTag: d2cc5f5-web
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
