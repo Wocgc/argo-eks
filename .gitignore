@@ -15,4 +15,4 @@ iam-policy.json
 iam-policy.json
 
 *.jar
-*.war
+petclinic.war
