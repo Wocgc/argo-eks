@@ -3,10 +3,11 @@ server:
     enabled: true
     ingressClassName: alb
     annotations:
+      external-dns.alpha.kubernetes.io/hostname: argo.cgclab.shop
       alb.ingress.kubernetes.io/scheme: internet-facing
       alb.ingress.kubernetes.io/target-type: ip
       alb.ingress.kubernetes.io/backend-protocol: HTTP
-      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:560971842042:certificate/95f144cf-af3b-4dd7-9256-97f6b2be6e72
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:560971842042:certificate/e0dde134-126b-4c75-a5a8-c61f9edf6b87
       alb.ingress.kubernetes.io/ssl-redirect: '443'
       alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80, "HTTPS": 443}]'
       alb.ingress.kubernetes.io/healthcheck-path: /healthz
@@ -15,6 +16,7 @@ server:
     paths:
       - /
     pathType: Prefix
+    https: true
   config:
     params:
       server.insecure: true   # 👉 헬스체크 307 해결 핵심!

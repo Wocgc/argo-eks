@@ -4,6 +4,7 @@ metadata:
   name: web-ingress
   namespace: default
   annotations:
+    external-dns.alpha.kubernetes.io/hostname: www.cgclab.shop
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
