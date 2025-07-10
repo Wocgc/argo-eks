@@ -1,6 +1,6 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
-metadata: 
+metadata:
   name: app-cgc-hpa
 spec:
   scaleTargetRef:
@@ -19,5 +19,6 @@ spec:
     - type: Resource
       resource:
         name: memory
-        target: Utilization
-        averageUtilization: 70      
+        target:
+          type: Utilization
+          averageUtilization: 70
