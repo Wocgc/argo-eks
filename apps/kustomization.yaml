@@ -4,3 +4,4 @@ resources:
   - ingress-app.yaml
   - hpa-app.yaml
   - autoscaler-app.yaml
+  - monitoring-app.yaml
