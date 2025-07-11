@@ -5,6 +5,7 @@ metadata:
   labels:
     app: app-cgc
 spec:
+  revisionHistoryLimit: 3
   replicas: 2
   selector:
     matchLabels:
@@ -17,7 +18,7 @@ spec:
       revisionHistoryLimit: 3
       containers:
         - name: app
-          image: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc:wocgc-app
+          image: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc:dae0ff0-app
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

@@ -1,0 +1,17 @@
+cloudProvider: aws
+
+autoDiscovery:
+  clusterName: cgc-cluster   # 👉 EKS 클러스터 이름 정확히!
+
+awsRegion: ap-northeast-2
+
+rbac:
+  serviceAccount:
+    create: false            # 👉 이미 만든 서비스어카운트 사용
+    name: cluster-autoscaler # 👉 OIDC 연동된 SA 이름과 동일해야 함
+
+extraArgs:
+  expander: least-waste
+  balance-similar-node-groups: true
+  skip-nodes-with-system-pods: false
+  skip-nodes-with-local-storage: false

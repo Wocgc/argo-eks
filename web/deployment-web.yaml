@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
         - name: web-cgc
-          image: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc:wocgc-web
+          image: 560971842042.dkr.ecr.ap-northeast-2.amazonaws.com/wocgc:35117dc-web
           imagePullPolicy: Always
           ports:
             - containerPort: 80
           resources:
             requests:
-              cpu: "200m"
+              cpu: "2000m"
               memory: "512Mi"
             limits:
-              cpu: "500m"
-              memory: "1Gi"
+              cpu: "2500m"
+              memory: "3Gi"

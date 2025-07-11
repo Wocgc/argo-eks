@@ -3,3 +3,4 @@ resources:
   - web-app.yaml
   - ingress-app.yaml
   - hpa-app.yaml
+  - autoscaler-app.yaml
