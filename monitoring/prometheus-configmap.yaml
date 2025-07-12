@@ -29,4 +29,3 @@ data:
         metrics_path: /metrics
         static_configs:
           - targets: ['prometheus.cgclab.shop']
-
