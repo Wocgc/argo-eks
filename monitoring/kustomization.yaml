@@ -6,3 +6,7 @@ resources:
   - pro-service.yaml
   - grafana-deploy.yaml
   - grafana-service.yaml
+  - node-exporter-daemonset.yaml
+  - kube-state-metrics.yaml
+  - kube-state-service.yaml
+  - node-exporter-service.yaml
