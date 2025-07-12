@@ -7,8 +7,17 @@ data:
   prometheus.yml: |
     global:
       scrape_interval: 15s
+
     scrape_configs:
       - job_name: 'prometheus'
         static_configs:
-          - targets: ['localhost:9090']
+          - targets: ['prometheus.monitoring.svc.cluster.local:9090']
 
+      - job_name: 'grafana'
+        static_configs:
+          - targets: ['grafana.monitoring.svc.cluster.local:3000']
+
+      - job_name: 'external-alb'
+        metrics_path: /metrics
+        static_configs:
+          - targets: ['prometheus.cgclab.shop']
