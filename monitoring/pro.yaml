@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+
+    scrape_configs:
+      # ── ① 자체 Prometheus 수집 ──────────────────
+      - job_name: prometheus
+        static_configs:
+          - targets:
+              - localhost:9090    # 파드 내부 loopback
+
+      # ── ② ALB(외부 도메인) 수집 ─────────────────
+      - job_name: external-alb
+        metrics_path: /
+        scheme: http             # ALB가 HTTP(80) 라면
+        static_configs:
+          - targets:
+              - prometheus.cgclab.shop:80   # <★ 도메인:포트 수정 가능>
+---
+# ────────────────────────────────────────────────
+# 2. Deployment – Prometheus
+#    · 설정 파일은 /etc/prometheus/prometheus.yml (subPath)
+# ────────────────────────────────────────────────
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: monitoring
+  labels:
+    app: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - name: prometheus
+          image: prom/prometheus:latest
+          args:
+            - "--config.file=/etc/prometheus/prometheus.yml"
+            - "--storage.tsdb.retention.time=15d"
+          ports:
+            - name: web
+              containerPort: 9090
+          volumeMounts:
+            - name: prometheus-config
+              mountPath: /etc/prometheus/prometheus.yml   # 파일 경로
+              subPath: prometheus.yml                     # ← 중요!
+      volumes:
+        - name: prometheus-config
+          configMap:
+            name: prometheus-config
+---
+# ────────────────────────────────────────────────
+# 3. Service – Prometheus (ClusterIP)
+# ────────────────────────────────────────────────
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+  namespace: monitoring
+  labels:
+    app: prometheus
+spec:
+  selector:
+    app: prometheus
+  ports:
+    - name: web
+      port: 9090
+      targetPort: web
+  type: ClusterIP
