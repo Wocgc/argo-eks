@@ -11,6 +11,7 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: / 
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
 spec:
+  ingressClassName: alb
   rules:
   - host: prometheus.cgclab.shop  # 너의 도메인에 맞게 변경
     http:
